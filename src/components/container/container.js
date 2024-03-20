@@ -1,9 +1,11 @@
 import Task from "../task/task";
 
-const Container = () =>{
+const Container = ({tasks, setTasks}) =>{
     return (
         <ul className="todo__items">
-            <Task value='вствть в 7' data='08.08.2024' />
+            {tasks.map(({ task, isCompleted }) => (
+                <Task task={task} data={task} setTasks={setTasks} tasks={tasks} key={task}/>
+            ))}
         </ul>  
     )
 }

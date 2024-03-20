@@ -1,15 +1,20 @@
+import { useEffect, useState } from "react";
 import React from 'react'; 
 import Form from './components/form/Form';
 import Container from './components/container/container';
-import BlockAdvertising from './components/blockAdvertising/blockAdvertising';
 
 
 const App = () => {
+  const [tasks, setTasks] = useState(
+    localStorage.getIte('task') ? JSON.parse(localStorage.getItem('task')) : [],
+  );
+  useEffect(() => {
+    localStorage.setItem('task', JSON.stringify(tasks));
+  }, [tasks]);
   return  (
     <div className="todo">
-      <Form />
-      <Container />
-      <BlockAdvertising />
+      <Form tasks={tasks} setTasks={setTasks}/>
+      <Container tasks={tasks} setTasks={setTasks}/>
     </div>
   )
 }
